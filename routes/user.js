@@ -23,6 +23,22 @@ router.post('/signup',function(req,res){
 router.get('/signin',function(req,res){
 	res.render('user/signin',{title:'登录'});
 });
+
+router.post('/signin',function(req,res){
+	let user = req.body;
+	User.findOne(user,function(err,doc){//查询数据库里是否有用户登录时的user  user有两个参数username和password
+		if(err){   //err有值,说明查询失败
+			res.redirect('back');  //返回,重新填写  还是登录页面
+		}else{
+			if(doc){  //如果有doc,说明找到了,登陆成功
+				res.redirect('/');
+			}else{
+				res.redirect('back');
+			}
+		}
+	});
+});
+
 router.get('/signout',function(req,res){
 	res.render('user/signout',{title:'退出'});
 });

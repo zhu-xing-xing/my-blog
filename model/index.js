@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');//1,引入mongoose
-mongoose.connect('mongodb://127.0.0.1/my-blog',{
+mongoose.connect('mongodb://127.0.0.1/my-blog',{ //2,连接数据库
 	useMongoClient: true
-});//2,连接数据库
+});
 
 //3,定义用户集合的骨架模型  规定了用户集合中文档的属性和类型
 let UserSchema = new mongoose.Schema({
