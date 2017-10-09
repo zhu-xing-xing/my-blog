@@ -15,4 +15,13 @@ npm install body-parser  cookie-parser debug ejs express morgan serve-favicon ex
 - file-loader url-loader 用来处理资源文件
 - html-webpack-plugin 用来自动产出html文件
 - open-browser-webpack-plugin 自动打开浏览器
-"# my-blog" 
+"# my-blog"
+
+## 创建并初始化git
+git init
+git add -A
+git commit -m "1,初始化项目和依赖的模块"
+git remote add origin https://github.com/zhu-xing-xing/my-blog.git
+git push -u origin master
+
+### 跑通路由

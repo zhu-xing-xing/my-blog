@@ -1,0 +1,37 @@
+{
+  "name": "my-blog",
+  "version": "1.0.0",
+  "description": "```\r npm install body-parser  cookie-parser debug ejs express morgan serve-favicon express-session connect-mongo mongoose connect-flash multer async -S\r ```",
+  "main": "server.js",
+  "dependencies": {
+    "async": "^2.5.0",
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.0",
+    "cookie-parser": "^1.4.3",
+    "debug": "^3.1.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.1",
+    "express-session": "^1.15.6",
+    "mongoose": "^4.12.1",
+    "morgan": "^1.9.0",
+    "multer": "^1.3.0",
+    "serve-favicon": "^2.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhu-xing-xing/my-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhu-xing-xing/my-blog/issues"
+  },
+  "homepage": "https://github.com/zhu-xing-xing/my-blog#readme"
+}
