@@ -1,5 +1,5 @@
 
-## 安装依赖包
+## 1,安装依赖包
 ```
 npm install body-parser  cookie-parser debug ejs express morgan serve-favicon express-session connect-mongo mongoose connect-flash multer async -S
 ```
@@ -24,4 +24,6 @@ git commit -m "1,初始化项目和依赖的模块"
 git remote add origin https://github.com/zhu-xing-xing/my-blog.git
 git push -u origin master
 
-### 跑通路由
+### 2,跑通路由
+### 3,渲染模版
+### 4,实现用户注册功能

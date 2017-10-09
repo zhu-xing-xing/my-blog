@@ -1,3 +1,44 @@
 <%- include ../include/header.html %>
-注册
+<div class="row">
+  <div class="col-sm-6 col-sm-off-3">
+    <form role="form" class="form-horizontal" method="post">
+
+      <div class="form-group">
+        <label for="username" class="control-label col-sm-3">用户名</label>
+        <div class="col-sm-9 input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+          <input type="text" class="form-control" required id="username" name="username">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="control-label col-sm-3">密 码</label>
+        <div class="col-sm-9  input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-lock"></span>
+          </span>
+          <input type="text" class="form-control" required id="password" name="password">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="control-label col-sm-3">邮 箱</label>
+        <div class="col-sm-9  input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-envelope"></span>
+          </span>
+          <input type="text" class="form-control" required id="email" name="email">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-9 col-sm-offset-3">
+          <button class="btn btn-primary" type="submit">提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 <%- include ../include/footer.html %>
