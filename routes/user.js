@@ -24,13 +24,15 @@ router.get('/signin',function(req,res){
 	res.render('user/signin',{title:'登录'});
 });
 
+//用户登录
 router.post('/signin',function(req,res){
-	let user = req.body;
+	let user = req.body;  //得到用户登录时提交的登录表单
 	User.findOne(user,function(err,doc){//查询数据库里是否有用户登录时的user  user有两个参数username和password
 		if(err){   //err有值,说明查询失败
 			res.redirect('back');  //返回,重新填写  还是登录页面
 		}else{
-			if(doc){  //如果有doc,说明找到了,登陆成功
+			if(doc){  //如果有doc,说明找到了,登陆成功    doc是一条信息或者null
+				req.session.user = doc;  //6.3  向会话对象中写入属性user,且user=doc
 				res.redirect('/');
 			}else{
 				res.redirect('back');
