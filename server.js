@@ -32,13 +32,13 @@ app.use(session({
 }));
 
 app.use(function(req,res,next){  	//在这里从会话对象中取出user属性,再赋值给模版对象
-	//真正渲染模板的是res.locals,给他赋值,会最终合并到res.locals上   在这里赋值各个组件都可以用到
+	//真正渲染模板的是res.locals,给它赋值(增加属性),会最终合并到res.locals上   在这里赋值各个组件都可以用到
 	res.locals.user = req.session.user;   //res.locals是模版数据对象
 	next();
 });
 
 
-// 使用路由中间件
+// 使用3个路由中间件
 app.use('/',index);//使用路由中间件 当客户端访问/时,交给index来处理
 
 //当用户端请求体过来的路径是/user开头的话,会会交给user中间件来处理  /user/signup  /user/signin
