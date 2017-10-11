@@ -2,6 +2,7 @@ let express = require('express');
 let path = require('path');  //3,为了处理路径,引入path模块
 let bodyParser = require('body-parser'); //4.1 引入中间件,用来获取请求体
 let session = require('express-session');//6.1 引入会话中间件
+let flash = require('connect-flash');//8.1 引入中间件
 let app = express();
 
 //引入各个中间件!!!
@@ -31,9 +32,19 @@ app.use(session({
 	saveUninitialized:true  //保存未初始化的session
 }));
 
+//8.2 注意此中间件的使用位置,一定要放在session后面,因为此中间件是需要依赖session(本质上是往session里面写消息,从session里面取消息,但还是多了一个清除session的功能)
+//req.flash(type,msg)两个参数表示赋值(往会话中写消息)  req.flash(type)一个参数表示取值
+app.use(flash());
+
 app.use(function(req,res,next){  	//在这里从会话对象中取出user属性,再赋值给模版对象
 	//真正渲染模板的是res.locals,给它赋值(增加属性),会最终合并到res.locals上   在这里赋值各个组件都可以用到
 	res.locals.user = req.session.user;   //res.locals是模版数据对象
+	
+	//flash本身有个特点就是闪现后就消失,读一次就立刻清空掉数据
+	res.locals.success = req.flash('success').toString();  //8.9 req.flash('success')[]
+	console.log(req.flash('success').toString());  //数据清空掉了   读取不到了
+	res.locals.error = req.flash('error').toString();//8.10
+	
 	next();
 });
 
