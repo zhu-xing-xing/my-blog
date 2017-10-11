@@ -26,4 +26,18 @@ router.post('/add',checkLogin,function(req,res){
 	})
 });
 
+//写文章详情页路由
+//localhost:8080/article     /detail/59ddce0be97e4734946ba2af
+router.get('/detail/:_id',function(req,res){
+	let _id = req.params._id;//获取路径参数_id
+	console.log(_id);
+	Article.findById(_id,function(err,article){
+		if(err){
+			req.flash('error',err);
+			res.redirect('back');
+		}else{
+			res.render('article/detail',{title:'文章详情',article});
+		}
+	})
+});
 module.exports = router;

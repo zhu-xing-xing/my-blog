@@ -48,7 +48,7 @@ app.use(function(req,res,next){  	//在这里从会话对象中取出user属性,
 	
 	//flash本身有个特点就是闪现后就消失,读一次就立刻清空掉数据
 	res.locals.success = req.flash('success').toString();  //8.9 req.flash('success')[]
-	console.log(req.flash('success').toString());  //数据清空掉了   读取不到了
+	// console.log(req.flash('success').toString());  //数据清空掉了   读取不到了
 	res.locals.error = req.flash('error').toString();//8.10
 	
 	next();

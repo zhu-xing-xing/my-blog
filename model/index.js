@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');//1,引入mongoose
+mongoose.Promise = Promise;
 let ObjectId = mongoose.Schema.Types.ObjectId;//10.1
 mongoose.connect('mongodb://127.0.0.1/my-blog',{ //2,连接数据库
 	useMongoClient: true
@@ -20,7 +21,7 @@ exports.User = User;
 let ArticleSchema = new mongoose.Schema({
 	title:String,  //标题
 	content:String,  //正文/内容
-	creatAt:{type:Date,default:Date.now},   //文章创建的时间,取当前时间
+	createAt:{type:Date,default:Date.now},   //文章创建的时间,取当前时间
 	//user是一个外键(引用的是另外一个集合(User)的主键)
 	user:{type:ObjectId,ref:'User'}  //用户(文章的作者),引用的是用户表的主键_id
 });
