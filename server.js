@@ -3,6 +3,7 @@ let path = require('path');  //3,为了处理路径,引入path模块
 let bodyParser = require('body-parser'); //4.1 引入中间件,用来获取请求体
 let session = require('express-session');//6.1 引入会话中间件
 let flash = require('connect-flash');//8.1 引入中间件
+
 let app = express();
 
 //引入各个中间件!!!
@@ -25,10 +26,15 @@ app.use(bodyParser.urlencoded({extended:true}));
 // 如果能找到则返回客户端并结束请求
 app.use(express.static(path.resolve('node_modules')));//7,引入中间件,指定目录
 
+app.use(express.static(path.resolve('public')));//9.6,public也成为静态文件根目录
+
 //6.2  在使用了会话中间件之后,会在请求对象上增加req.session属性  默认是一个空对象
 app.use(session({
 	resave:true,   //每次客户端请求到服务器都会保存session
 	secret:'zxx',   //用来加密cookie,防止cookie被客户端篡改
+	cookie:{
+		maxAge:3600*1000  //指定cookie的过期时间
+	},
 	saveUninitialized:true  //保存未初始化的session
 }));
 

@@ -1,5 +1,9 @@
 let express = require('express');
 let {User} = require('../model');//2,通过解构赋值直接获取User
+
+let multer = require('multer');//9.1 引入multer中间件(用来上传图片)
+let uploads = multer({dest:'public/uploads'}); //9.2  设置上传路径(dest表示上传后的图片所存放的位置)
+
 let {checkNotLogin,checkLogin} = require('../auth');  //7.3  引入新写的两个中间件
 let router = express.Router();
 
@@ -9,8 +13,14 @@ router.get('/signup',checkNotLogin,function(req,res){  //7.4 把判断未登录�
 });
 
 //1,写路由方法
-router.post('/signup',checkNotLogin,function(req,res){  //7.5
+//9.3 single当表单里只有一个上传字段的话 avatar是上传字段的name属性 req.file  req.body
+//single方法,传递进去一个字段的名字,返回一个路由中间件,中间件会解析我们的请求体,把文件信息赋给req.file;把其他字段赋值给req.body
+router.post('/signup',checkNotLogin,uploads.single('avatar'),function(req,res){  //7.5
 	let user = req.body;//得到请求体对象(username,password,email)
+	
+	//9.4 给user对象添加avatar字段
+	user.avatar = `/uploads/${req.file.filename}`; //9.5 还要再写一个静态文件中间件
+	
 	User.create(user,function(err,doc){   //3,把user对象保存到数据库中
 		//err错误对象  doc保存成功后的user对象   _id  __v
 		if(err){  //4,如果保存失败,回到上一个页面,重新保存

@@ -7,7 +7,8 @@ mongoose.connect('mongodb://127.0.0.1/my-blog',{ //2,连接数据库
 let UserSchema = new mongoose.Schema({
 	username:String,
 	password:String,
-	email:String
+	email:String,
+	avatar:String
 });
 
 //4,定义用户模型
