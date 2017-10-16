@@ -45,7 +45,7 @@ app.use(flash());
 app.use(function(req,res,next){  	//在这里从会话对象中取出user属性,再赋值给模版对象
 	//真正渲染模板的是res.locals,给它赋值(增加属性),会最终合并到res.locals上   在这里赋值各个组件都可以用到
 	res.locals.user = req.session.user;   //res.locals是模版数据对象
-	
+	res.locals.keyword = '';
 	//flash本身有个特点就是闪现后就消失,读一次就立刻清空掉数据
 	res.locals.success = req.flash('success').toString();  //8.9 req.flash('success')[]
 	// console.log(req.flash('success').toString());  //数据清空掉了   读取不到了
