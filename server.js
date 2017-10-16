@@ -3,7 +3,7 @@ let path = require('path');  //3,为了处理路径,引入path模块
 let bodyParser = require('body-parser'); //4.1 引入中间件,用来获取请求体
 let session = require('express-session');//6.1 引入会话中间件
 let flash = require('connect-flash');//8.1 引入中间件
-
+let MongoStore = require('connect-mongo')(session);  //16.1 引入MongoStore,并把session传入,调用一下
 let app = express();
 
 //引入各个中间件!!!
@@ -35,7 +35,10 @@ app.use(session({
 	cookie:{
 		maxAge:3600*1000  //指定cookie的过期时间
 	},
-	saveUninitialized:true  //保存未初始化的session
+	saveUninitialized:true,  //保存未初始化的session
+	store:new MongoStore({  //16.2 session中添加store
+		url:require('./config').dbUrl  //16.3 这里的url与model/index.js里面连接数据的的地址必须完全一致
+	})
 }));
 
 //8.2 注意此中间件的使用位置,一定要放在session后面,因为此中间件是需要依赖session(本质上是往session里面写消息,从session里面取消息,但还是多了一个清除session的功能)

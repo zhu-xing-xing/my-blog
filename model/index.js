@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');//1,引入mongoose
 mongoose.Promise = Promise;
 let ObjectId = mongoose.Schema.Types.ObjectId;//10.1
-mongoose.connect('mongodb://127.0.0.1/my-blog',{ //2,连接数据库
+mongoose.connect(require('../config').dbUrl,{ //2,连接数据库
 	useMongoClient: true
 });
 
