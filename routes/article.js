@@ -40,4 +40,19 @@ router.get('/detail/:_id',function(req,res){
 		}
 	})
 });
+
+//删除按钮的路由
+router.get('/delete/:_id',function(req,res){
+	let _id = req.params._id;  //先获取要删除文章的id
+	Article.remove({_id},function(err,result){  //err错误对象  result操作结果的对象
+		if(err){
+			req.flash('error',err);
+			res.redirect('back');
+		}else{
+			req.flash('success','删除文章成功');
+			res.redirect('/');//成功后跳转到首页
+		}
+	})
+});
+
 module.exports = router;
